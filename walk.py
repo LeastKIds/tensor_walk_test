@@ -29,7 +29,7 @@ print(f"The Request package is version {requests.__version__}")
 ###############################################################################
 
 places = ['북구, 대구, 대한민국']
-G = ox.graph_from_place(places, network_type='all', simplify=True)
+G = ox.graph_from_place(places, network_type='walk', simplify=True)
 
 ###############################################################################
 #                               4. Unpack Data                                #
@@ -45,14 +45,15 @@ for uu, vv, kkey, ddata in G.edges(keys=True, data=True):
     key.append(key)
     data.append(ddata)
 
+print(list(G))
 # print(data[0])
 # print(data[1])
 # print(data[10]['name'])
 
-time_pd = pd.DataFrame(data)
-time_pd.to_csv('data.csv',mode='w',encoding='utf-8-sig')
-
-
+# time_pd = pd.DataFrame(data)
+# time_pd.to_csv('data_walk.csv',mode='w',encoding='utf-8-sig')
+#
+#
 # ###############################################################################
 # #                5. Assign Each Segment a Color Based on its Length           #
 # ###############################################################################
@@ -101,19 +102,22 @@ time_pd.to_csv('data.csv',mode='w',encoding='utf-8-sig')
 # #                                 7. Make Map                                 #
 # ###############################################################################
 # # Center of map
-# latitude = 35.923364943153565
-# longitude = 128.5764782484241
-#
-# # Bbox sides
-# north = latitude + 0.05
-# south = latitude - 0.05
-# east = longitude + 0.08
-# west = longitude - 0.08
+latitude = 35.923364943153565
+longitude = 128.5764782484241
+
+# Bbox sides
+north = latitude + 0.05
+south = latitude - 0.05
+east = longitude + 0.08
+west = longitude - 0.08
 #
 # # Make Map
 # fig, ax = ox.plot_graph(G, node_size=0, bbox=(north, south, east, west),  dpi=600, bgcolor="#061529",
 #                         save=False, edge_color=roadColors,
 #                         edge_linewidth=roadWidths, edge_alpha=1)
+
+fig, ax = ox.plot_graph(G, node_size=0, bbox=(north, south, east, west),  dpi=600, bgcolor="#061529",
+                        save=False, edge_alpha=1)
 #
 # # Text and marker size
 # markersize = 5
@@ -144,4 +148,4 @@ time_pd.to_csv('data.csv',mode='w',encoding='utf-8-sig')
 #     text.set_color("w")
 #
 # # Save figure
-# fig.savefig("Lawrence.png", dpi=1000, bbox_inches='tight', format="png", facecolor=fig.get_facecolor(), transparent=True)
+# fig.savefig("Lawrence_walk.png", dpi=1000, bbox_inches='tight', format="png", facecolor=fig.get_facecolor(), transparent=True)
