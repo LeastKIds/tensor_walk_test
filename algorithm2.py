@@ -94,10 +94,18 @@ while True:
         print('len(route_sum) : ', end='')
         print(len(route_sum))
         if len(set_route) / len(route_sum) > 0.85:
+            # if len(save_route) != 0:
+            #     for i in save_route:
+            #         i.extend(save_route)
+            #         if len(set(i))/len(i) < 0.85:
+            #             photo -= 1
+            #             break
             save_route.append(route_sum)
             save_length.append(length_sum)
             save_time.append(time_sum)
             photo += 1
+
+
 
 
 
