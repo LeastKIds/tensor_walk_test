@@ -21,7 +21,7 @@ def route(list, g, start, end, time):
         print('======')
         if time+10 < time_sum:
             success = False
-            return length_sum, time_sum, success, route_sum
+            return length_sum, time_sum, success, route_sum, start_node, end_node
 
     route = nx.shortest_path(g, list[-1], end_node, weight='length')
     route_sum.extend(route[1:])
@@ -31,8 +31,8 @@ def route(list, g, start, end, time):
 
     if time + 10 > time_sum > time - 10:
         success = True
-        return length_sum, time_sum, success, route_sum
+        return length_sum, time_sum, success, route_sum, start_node, end_node
 
     else:
         success = False
-        return length_sum, time_sum, success, route_sum
+        return length_sum, time_sum, success, route_sum, start_node, end_node
